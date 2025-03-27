@@ -7,6 +7,9 @@
     --light-color: #F8F9FA;
     --space-blue: #0B0B2B;
     --star-color: #FFFFFF;
+    --planet-1: #FF6B6B;
+    --planet-2: #4A90E2;
+    --planet-3: #FFD93D;
 }
 
 * {
@@ -37,6 +40,8 @@ body {
         radial-gradient(2px 2px at 90px 40px, var(--star-color), rgba(0,0,0,0)),
         radial-gradient(2px 2px at 130px 80px, var(--star-color), rgba(0,0,0,0)),
         radial-gradient(2px 2px at 160px 120px, var(--star-color), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 200px 150px, var(--star-color), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 250px 90px, var(--star-color), rgba(0,0,0,0)),
         linear-gradient(to bottom, var(--space-blue), #000033);
     background-repeat: repeat;
     z-index: -2;
@@ -141,6 +146,136 @@ body {
     }
     100% {
         transform: translateX(calc(100vw + 100px)) rotate(30deg);
+        opacity: 0;
+    }
+}
+
+/* Planets */
+.planet {
+    position: fixed;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.8;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+}
+
+.planet-1 {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at 30% 30%, var(--planet-1), #8B0000);
+    top: 10%;
+    right: 5%;
+    animation: orbitPlanet1 30s linear infinite;
+}
+
+.planet-2 {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at 30% 30%, var(--planet-2), #1a237e);
+    top: 40%;
+    left: 5%;
+    animation: orbitPlanet2 25s linear infinite;
+}
+
+.planet-3 {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, var(--planet-3), #FFA000);
+    top: 70%;
+    right: 10%;
+    animation: orbitPlanet3 35s linear infinite;
+}
+
+@keyframes orbitPlanet1 {
+    0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+@keyframes orbitPlanet2 {
+    0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+    100% { transform: rotate(-360deg) translateX(80px) rotate(360deg); }
+}
+
+@keyframes orbitPlanet3 {
+    0% { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+
+/* Shooting Stars */
+.shooting-star {
+    position: fixed;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--star-color), transparent);
+    z-index: -1;
+    opacity: 0;
+}
+
+.shooting-star-1 {
+    top: 20%;
+    left: -100px;
+    animation: shootStar1 8s linear infinite;
+}
+
+.shooting-star-2 {
+    top: 40%;
+    left: -100px;
+    animation: shootStar2 12s linear infinite;
+}
+
+.shooting-star-3 {
+    top: 60%;
+    left: -100px;
+    animation: shootStar3 10s linear infinite;
+}
+
+@keyframes shootStar1 {
+    0% {
+        transform: translateX(0) rotate(-45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px)) rotate(-45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes shootStar2 {
+    0% {
+        transform: translateX(0) rotate(-30deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px)) rotate(-30deg);
+        opacity: 0;
+    }
+}
+
+@keyframes shootStar3 {
+    0% {
+        transform: translateX(0) rotate(-60deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px)) rotate(-60deg);
         opacity: 0;
     }
 }
@@ -452,4 +587,20 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Enhanced Navigation */
+header {
+    background: rgba(11, 11, 43, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.logo h1 {
+    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 } 
